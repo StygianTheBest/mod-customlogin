@@ -15,16 +15,16 @@
 ### Data ###
 ------------------------------------------------------------------------------------------------------------------
 - Type: Player/Server
-- Script: LoginMods
+- Script: CustomLogin
 - Config: Yes
 - SQL: No
 
 
 ### Version ###
 ------------------------------------------------------------------------------------------------------------------
-- v2017.08.01
-- v2017.08.25 (clean up code, add rep gain, add config options)
 - v2018.12.01 (fix PlayerAnnounce when exiting game)
+- v2017.08.25 (clean up code, add rep gain, add config options)
+- v2017.08.01
 
 
 ### Credits ###
@@ -70,7 +70,7 @@ bool LoginReputation = 1;
 class LoginConfig : public WorldScript
 {
 public:
-    LoginConfig() : WorldScript("LoginConfig_conf") { }
+    LoginConfig() : WorldScript("LoginConfig") { }
 
     void OnBeforeConfigLoad(bool reload) override
     {
@@ -81,19 +81,26 @@ public:
 #ifdef WIN32
             cfg_file = "mod_customlogin.conf";
 #endif
+
             std::string cfg_def_file = cfg_file + ".dist";
             sConfigMgr->LoadMore(cfg_def_file.c_str());
             sConfigMgr->LoadMore(cfg_file.c_str());
 
-            LoginEnable = sConfigMgr->GetBoolDefault("Login.Enable", 1);
-            LoginAnnounceModule = sConfigMgr->GetBoolDefault("Login.Announce", 1);
-            LoginPlayerAnnounce = sConfigMgr->GetBoolDefault("Login.PlayerAnnounce", 1);
-            LoginBOA = sConfigMgr->GetBoolDefault("Login.BoA", 1);
-            LoginSkills = sConfigMgr->GetBoolDefault("Login.Skills", 1);
-            LoginSpecialAbility = sConfigMgr->GetBoolDefault("Login.SpecialAbility", 1);
-            LoginReputation = sConfigMgr->GetBoolDefault("Login.Reputation", 1);
-
+            // Load Configuration Settings
+            SetInitialWorldSettings();
         }
+    }
+
+    // Load Configuration Settings
+    void SetInitialWorldSettings()
+    {
+        LoginEnable = sConfigMgr->GetBoolDefault("Login.Enable", 1);
+        LoginAnnounceModule = sConfigMgr->GetBoolDefault("Login.Announce", 1);
+        LoginPlayerAnnounce = sConfigMgr->GetBoolDefault("Login.PlayerAnnounce", 1);
+        LoginBOA = sConfigMgr->GetBoolDefault("Login.BoA", 1);
+        LoginSkills = sConfigMgr->GetBoolDefault("Login.Skills", 1);
+        LoginSpecialAbility = sConfigMgr->GetBoolDefault("Login.SpecialAbility", 1);
+        LoginReputation = sConfigMgr->GetBoolDefault("Login.Reputation", 1);
     }
 };
 
