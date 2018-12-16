@@ -63,6 +63,17 @@ bool LoginEnable = 1;
 bool LoginAnnounceModule = 1;
 bool LoginPlayerAnnounce = 1;
 bool LoginBOA = 1;
+bool LoginBOARing = 1;
+bool LoginBOABags = 1;
+bool LoginBOAShoulders = 1;
+bool LoginBOAShoulders2 = 1;
+bool LoginBOAChest = 1;
+bool LoginBOAChest2 = 1;
+bool LoginBOATrinket = 1;
+bool LoginBOATrinket2 = 1;
+bool LoginBOAWeapon = 1;
+bool LoginBOAWeapon2 = 1;
+bool LoginBOAWeapon3 = 1;
 bool LoginSkills = 1;
 bool LoginSpecialAbility = 0;
 bool LoginReputation = 1;
@@ -98,6 +109,17 @@ public:
         LoginAnnounceModule = sConfigMgr->GetBoolDefault("Login.Announce", 1);
         LoginPlayerAnnounce = sConfigMgr->GetBoolDefault("Login.PlayerAnnounce", 1);
         LoginBOA = sConfigMgr->GetBoolDefault("Login.BoA", 1);
+        LoginBOARing = sConfigMgr->GetBoolDefault("Login.BoA.Ring", 1);
+        LoginBOABags = sConfigMgr->GetBoolDefault("Login.BoA.Bags",1);
+        LoginBOAShoulders = sConfigMgr->GetBoolDefault("Login.BoA.Shoulders", 1);
+        LoginBOAShoulders2 = sConfigMgr->GetBoolDefault("Login.BoA.Shoulders2",1);
+        LoginBOAChest = sConfigMgr->GetBoolDefault("Login.BoA.Chest",1);
+        LoginBOAChest2 = sConfigMgr->GetBoolDefault("Login.BoA.Chest2",1);
+        LoginBOATrinket = sConfigMgr->GetBoolDefault("Login.BoA.Trinket",1);
+        LoginBOATrinket2 = sConfigMgr->GetBoolDefault("Login.BoA.Trinket2",1);
+        LoginBOAWeapon = sConfigMgr->GetBoolDefault("Login.BoA.Weapon",1);
+        LoginBOAWeapon2 = sConfigMgr->GetBoolDefault("Login.BoA.Weapon2",1);
+        LoginBOAWeapon3 = sConfigMgr->GetBoolDefault("Login.BoA.Weapon3",1);
         LoginSkills = sConfigMgr->GetBoolDefault("Login.Skills", 1);
         LoginSpecialAbility = sConfigMgr->GetBoolDefault("Login.SpecialAbility", 1);
         LoginReputation = sConfigMgr->GetBoolDefault("Login.Reputation", 1);
@@ -224,12 +246,12 @@ public:
 
                 case CLASS_DRUID:
                     shoulders = 42984;
-                    chest = 48687;
-                    trinket = 42992;
-                    weapon = 42948;
                     shoulders2 = 42952;
+                    chest = 48687;
                     chest2 = 48689;
+                    trinket = 42992;
                     trinket2 = 42991;
+                    weapon = 42948;
                     weapon2 = 48718;
                     break;
 
@@ -238,101 +260,110 @@ public:
                 }
 
                 // Hand out the heirlooms. I prefer only the ring and trinkets for new characters.
-                // TODO: The ability to turn on and off item types from config.
+                // TODO: Improve the code. No time, no care, no worries!
                 switch (player->getClass())
                 {
 
+                case CLASS_PRIEST:
+                    if (LoginBOATrinket) { player->AddItem(trinket, 2); };
+                    if (LoginBOARing) { player->AddItem(ring, 1); }
+                    if (LoginBOAShoulders) { player->AddItem(shoulders, 1); }
+                    if (LoginBOAChest) { player->AddItem(chest, 1); }
+                    if (LoginBOAWeapon) { player->AddItem(weapon, 1); }
+                    if (LoginBOABags) { player->AddItem(bag, 1); }
+                    break;
+
                 case CLASS_DEATH_KNIGHT:
-                    //player->AddItem(trinket, 2);
-                    player->AddItem(ring, 1);
-                    //player->AddItem(shoulders, 1);
-                    //player->AddItem(chest, 1);
-                    //player->AddItem(weapon, 1);
-                    //player->AddItem(weapon2, 1);
-                    //player->AddItem(weapon3, 1);
-                    player->AddItem(bag, 1);
+                    if (LoginBOATrinket) { player->AddItem(trinket, 2); };
+                    if (LoginBOARing) { player->AddItem(ring, 1); }
+                    if (LoginBOAShoulders) { player->AddItem(shoulders, 1); }
+                    if (LoginBOAChest) { player->AddItem(chest, 1); }
+                    if (LoginBOAWeapon) { player->AddItem(weapon, 1); }
+                    if (LoginBOAWeapon2) { player->AddItem(weapon2, 1); }
+                    if (LoginBOAWeapon3) { player->AddItem(weapon3, 1); }
+                    if (LoginBOABags) { player->AddItem(bag, 1); }
                     break;
 
                 case CLASS_PALADIN:
-                    //player->AddItem(trinket, 2);
-                    player->AddItem(ring, 1);
-                    //player->AddItem(shoulders, 1);
-                    //player->AddItem(chest, 1);
-                    //player->AddItem(weapon, 1);
-                    //player->AddItem(weapon2, 1);
-                    player->AddItem(bag, 1);
+                    if (LoginBOATrinket) { player->AddItem(trinket, 2); };
+                    if (LoginBOARing) { player->AddItem(ring, 1); }
+                    if (LoginBOAShoulders) { player->AddItem(shoulders, 1); }
+                    if (LoginBOAChest) { player->AddItem(chest, 1); }
+                    if (LoginBOAWeapon) { player->AddItem(weapon, 1); }
+                    if (LoginBOAWeapon2) { player->AddItem(weapon2, 1); }
+                    if (LoginBOABags) { player->AddItem(bag, 1); }
                     break;
 
                 case CLASS_WARRIOR:
-                    //player->AddItem(trinket, 2);
-                    player->AddItem(ring, 1);
-                    //player->AddItem(shoulders, 1);
-                    //player->AddItem(chest, 1);
-                    //player->AddItem(weapon, 1);
-                    //player->AddItem(weapon2, 1);
-                    //player->AddItem(weapon3, 1);
-                    player->AddItem(bag, 1);
+                    if (LoginBOATrinket) { player->AddItem(trinket, 2); };
+                    if (LoginBOARing) { player->AddItem(ring, 1); }
+                    if (LoginBOAShoulders) { player->AddItem(shoulders, 1); }
+                    if (LoginBOAChest) { player->AddItem(chest, 1); }
+                    if (LoginBOAWeapon) { player->AddItem(weapon, 1); }
+                    if (LoginBOAWeapon2) { player->AddItem(weapon2, 1); }
+                    if (LoginBOAWeapon3) { player->AddItem(weapon3, 1); }
+                    if (LoginBOABags) { player->AddItem(bag, 1); }
                     break;
 
                 case CLASS_HUNTER:
-                    //player->AddItem(trinket, 2);
-                    player->AddItem(ring, 1);
-                    //player->AddItem(shoulders, 1);
-                    //player->AddItem(chest, 1);
-                    //player->AddItem(weapon, 1);
-                    //player->AddItem(weapon2, 1);
-                    //player->AddItem(weapon3, 1);
-                    player->AddItem(bag, 1);
+                    if (LoginBOATrinket) { player->AddItem(trinket, 2); };
+                    if (LoginBOARing) { player->AddItem(ring, 1); }
+                    if (LoginBOAShoulders) { player->AddItem(shoulders, 1); }
+                    if (LoginBOAChest) { player->AddItem(chest, 1); }
+                    if (LoginBOAWeapon) { player->AddItem(weapon, 1); }
+                    if (LoginBOAWeapon2) { player->AddItem(weapon2, 1); }
+                    if (LoginBOAWeapon3) { player->AddItem(weapon3, 1); }
+                    if (LoginBOABags) { player->AddItem(bag, 1); }
                     break;
 
                 case CLASS_ROGUE:
-                    //player->AddItem(trinket, 2);
-                    player->AddItem(ring, 1);
-                    //player->AddItem(shoulders, 1);
-                    //player->AddItem(chest, 1);
-                    //player->AddItem(weapon, 1);
-                    //player->AddItem(weapon2, 1);
-                    player->AddItem(bag, 1);
+                    if (LoginBOATrinket) { player->AddItem(trinket, 2); };
+                    if (LoginBOARing) { player->AddItem(ring, 1); }
+                    if (LoginBOAShoulders) { player->AddItem(shoulders, 1); }
+                    if (LoginBOAChest) { player->AddItem(chest, 1); }
+                    if (LoginBOAWeapon) { player->AddItem(weapon, 1); }
+                    if (LoginBOAWeapon2) { player->AddItem(weapon2, 1); }
+                    if (LoginBOABags) { player->AddItem(bag, 1); }
                     break;
 
                 case CLASS_DRUID:
-                    //player->AddItem(trinket, 2);
-                    //player->AddItem(trinket2, 2);
-                    player->AddItem(ring, 1);
-                    //player->AddItem(shoulders, 1);
-                    //player->AddItem(chest, 1);
-                    //player->AddItem(weapon, 1);
-                    //player->AddItem(shoulders2, 1);
-                    //player->AddItem(chest2, 1);
-                    //player->AddItem(weapon2, 1);
-                    player->AddItem(bag, 1);
+                    if (LoginBOATrinket) { player->AddItem(trinket, 2); };
+                    if (LoginBOATrinket) { player->AddItem(trinket2, 2); };
+                    if (LoginBOARing) { player->AddItem(ring, 1); }
+                    if (LoginBOAShoulders) { player->AddItem(shoulders, 1); }
+                    if (LoginBOAShoulders2) { player->AddItem(shoulders2, 1); }
+                    if (LoginBOAChest) { player->AddItem(chest, 1); }
+                    if (LoginBOAWeapon) { player->AddItem(weapon, 1); }
+                    if (LoginBOAWeapon2) { player->AddItem(weapon2, 1); }
+                    if (LoginBOAWeapon3) { player->AddItem(weapon3, 1); }
+                    if (LoginBOABags) { player->AddItem(bag, 1); }
                     break;
 
                 case CLASS_SHAMAN:
-                    //player->AddItem(trinket, 2);
-                    player->AddItem(ring, 1);
-                    //player->AddItem(shoulders, 1);
-                    //player->AddItem(chest, 1);
-                    //player->AddItem(weapon, 1);
-                    //player->AddItem(shoulders2, 1);
-                    //player->AddItem(chest2, 1);
-                    //player->AddItem(weapon2, 1);
-                    player->AddItem(bag, 1);
+                    if (LoginBOATrinket) { player->AddItem(trinket, 2); };
+                    if (LoginBOARing) { player->AddItem(ring, 1); }
+                    if (LoginBOAShoulders) { player->AddItem(shoulders, 1); }
+                    if (LoginBOAShoulders2) { player->AddItem(shoulders2, 1); }
+                    if (LoginBOAChest) { player->AddItem(chest, 1); }
+                    if (LoginBOAChest2) { player->AddItem(chest2, 1); }
+                    if (LoginBOAWeapon) { player->AddItem(weapon, 1); }
+                    if (LoginBOAWeapon2) { player->AddItem(weapon2, 1); }
+                    if (LoginBOABags) { player->AddItem(bag, 1); }
                     break;
 
                 default:
-                    //player->AddItem(trinket, 2);
-                    player->AddItem(ring, 1);
-                    //player->AddItem(shoulders, 1);
-                    //player->AddItem(chest, 1);
-                    //player->AddItem(weapon, 1);
-                    player->AddItem(bag, 1);
+                    if (LoginBOATrinket) { player->AddItem(trinket, 2); };
+                    if (LoginBOARing) { player->AddItem(ring, 1); }
+                    if (LoginBOAShoulders) { player->AddItem(shoulders, 1); }
+                    if (LoginBOAChest) { player->AddItem(chest, 1); }
+                    if (LoginBOAWeapon) { player->AddItem(weapon, 1); }
+                    if (LoginBOABags) { player->AddItem(bag, 1); }
                     break;
                 }
 
                 // Inform the player they have new items
                 std::ostringstream ss;
-                ss << "|cffFF0000[CustomLogin]:|cffFF8000 The outfitter has placed Heirloom gear in your backpack!";
+                ss << "|cffFFFFFF[|cffFF0000 CustomLogin |cffFFFFFF] |cffFF8000 The outfitter has placed |cFFBDB76BHeirloom Gear|cffFF8000 in your backpack!";
                 ChatHandler(player->GetSession()).SendSysMessage(ss.str().c_str());
             }
 
@@ -444,7 +475,7 @@ public:
 
                 // Inform the player they have new skills
                 std::ostringstream ss;
-                ss << "|cffFF0000[CustomLogin]:|cffFF8000 You have been granted additional weapon skills.";
+                ss << "|cffFFFFFF[|cffFF0000 CustomLogin |cffFFFFFF] |cffFF8000 You have been granted |cFFBDB76Badditional weapon skills|cffFF8000.";
                 ChatHandler(player->GetSession()).SendSysMessage(ss.str().c_str());
             }
 
@@ -492,7 +523,7 @@ public:
 
                 // Inform the player they have new skills
                 std::ostringstream ss;
-                ss << "|cffFF0000[CustomLogin]:|cffFF8000 Your spellbook has been scribed with special abilities.";
+                ss << "|cffFFFFFF[|cffFF0000 CustomLogin |cffFFFFFF]|cffFF8000 Your spellbook has been scribed with |cFFBDB76Bspecial abilities|cffFF8000.";
                 ChatHandler(player->GetSession()).SendSysMessage(ss.str().c_str());
             }
 
@@ -526,7 +557,7 @@ public:
 
                 // Inform the player they have exalted reputations
                 std::ostringstream ss;
-                ss << "|cffFF0000[CustomLogin]:|cffFF8000 Your are now Exalted with your faction's capital cities " << player->GetName() << ".";
+                ss << "|cffFFFFFF[|cffFF0000 CustomLogin |cffFFFFFF]|cffFF8000 Your are now |cFFBDB76BExalted|cffFF8000 with your faction's capital cities.";
                 ChatHandler(player->GetSession()).SendSysMessage(ss.str().c_str());
             }
         }
