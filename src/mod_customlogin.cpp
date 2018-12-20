@@ -22,9 +22,10 @@
 
 ### Version ###
 ------------------------------------------------------------------------------------------------------------------
-- v2018.12.01 (fix PlayerAnnounce when exiting game)
-- v2017.08.25 (clean up code, add rep gain, add config options)
-- v2017.08.01
+- v2018.12.19 - Add BOA specific config options
+- v2018.12.01 - Fix PlayerAnnounce when exiting game
+- v2017.08.25 - Clean up code, add rep gain, add config options
+- v2017.08.01 - Release
 
 
 ### Credits ###
@@ -363,7 +364,7 @@ public:
 
                 // Inform the player they have new items
                 std::ostringstream ss;
-                ss << "|cffFFFFFF[|cffFF0000 CustomLogin |cffFFFFFF] |cffFF8000 The outfitter has placed |cFFBDB76BHeirloom Gear|cffFF8000 in your backpack!";
+                ss << "|cffFF8000[|cFFBDB76BCL|cffFF8000] The outfitter has placed |cFFBDB76BHeirloom Gear|cffFF8000 in your backpack!";
                 ChatHandler(player->GetSession()).SendSysMessage(ss.str().c_str());
             }
 
@@ -475,7 +476,7 @@ public:
 
                 // Inform the player they have new skills
                 std::ostringstream ss;
-                ss << "|cffFFFFFF[|cffFF0000 CustomLogin |cffFFFFFF] |cffFF8000 You have been granted |cFFBDB76Badditional weapon skills|cffFF8000.";
+                ss << "|cffFF8000[|cFFBDB76BCL|cffFF8000] You have been granted |cFFBDB76Badditional weapon skills|cffFF8000.";
                 ChatHandler(player->GetSession()).SendSysMessage(ss.str().c_str());
             }
 
@@ -523,7 +524,7 @@ public:
 
                 // Inform the player they have new skills
                 std::ostringstream ss;
-                ss << "|cffFFFFFF[|cffFF0000 CustomLogin |cffFFFFFF]|cffFF8000 Your spellbook has been scribed with |cFFBDB76Bspecial abilities|cffFF8000.";
+                ss << "|cffFF8000[|cFFBDB76BCL|cffFF8000] Your spellbook has been scribed with |cFFBDB76Bspecial abilities|cffFF8000.";
                 ChatHandler(player->GetSession()).SendSysMessage(ss.str().c_str());
             }
 
@@ -557,7 +558,7 @@ public:
 
                 // Inform the player they have exalted reputations
                 std::ostringstream ss;
-                ss << "|cffFFFFFF[|cffFF0000 CustomLogin |cffFFFFFF]|cffFF8000 Your are now |cFFBDB76BExalted|cffFF8000 with your faction's capital cities.";
+                ss << "|cffFF8000[|cFFBDB76BCL|cffFF8000] Your are now |cFFBDB76BExalted|cffFF8000 with your faction's capital cities.";
                 ChatHandler(player->GetSession()).SendSysMessage(ss.str().c_str());
             }
         }
